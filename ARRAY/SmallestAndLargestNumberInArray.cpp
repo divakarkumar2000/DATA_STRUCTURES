@@ -1,3 +1,5 @@
+/*FINDING LARGEST AND SMALLEST ELEMENT IN AN ARRAY*/
+/*linear search */
 #include<iostream>
 #include<climits>
 using namespace std;
