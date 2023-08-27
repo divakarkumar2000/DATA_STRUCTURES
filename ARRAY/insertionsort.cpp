@@ -13,6 +13,9 @@ Step 4 - If the element in the sorted array is smaller than the current element,
 Step 5 - Insert the value.
 
 Step 6 - Repeat until the array is sorted.
+Best case TC O(N)
+Worst case TC O(N^2)
+stable and adaptive
 */
 #include<bits/stdc++.h>
 using namespace std;
