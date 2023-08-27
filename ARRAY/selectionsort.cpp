@@ -9,6 +9,12 @@ The smallest element is selected from the unsorted array and swapped with the le
 
 This algorithm is not suitable for large data sets as its average and worst case complexities are
  of Ο(n2), where n is the number of items.*/
+ /*it is based on having the smallest no. on top . Select the smallest on put on the required position its does
+ not requires too much swapping*/
+ /* TC =O(N^2)
+   NOT ADAPTIVE
+   NOT STABLE
+   REQUIRED LESS NO. OF SWAPS THAN BUBBLE SORT*/
 #include<bits/stdc++.h>
 using namespace std;
 void selection_sort(int arr[],int n)
