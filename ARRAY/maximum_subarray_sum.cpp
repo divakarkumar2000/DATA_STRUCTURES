@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 //O(N^3)
-/*void gen_sub(int array[],int size)
+/*void max_sum(int array[],int size)
 {
     int maxsum=INT_MIN;
     //to save the index of the maximum array
@@ -24,6 +24,7 @@ using namespace std;
         }
     }
   }
+  cout <<" \n MAXIMUM SUM :" << maxsum <<endl;
   for(int i=left;i<=right;i++)
   {
     cout<<array[i]<<" ";
@@ -48,7 +49,7 @@ using namespace std;
                 total sum of array upto -9  subtract total sum upto -3
                 sum=csum[j]-csum[i-1];(as per code)
 */
-void gen_sub(int array[],int size)
+/*void max_sum(int array[],int size)
 {
     int maxsum=INT_MIN;
     int left=0;
@@ -75,14 +76,43 @@ void gen_sub(int array[],int size)
         }
     }
   }
+  cout <<" \n MAXIMUM SUM :" << maxsum <<endl;
   for(int i=left;i<=right;i++)
   {
     cout<<array[i]<<" ";
   }
+}*/
+/*TC O(N)
+Initialize the variables max_so_far = INT_MIN and max_ending_here = 0
+Run a for loop from 0 to N-1 and for each index i: 
+Add the arr[i] to max_ending_here.
+If  max_so_far is less than max_ending_here then update max_so_far  to max_ending_here.
+If max_ending_here < 0 then update max_ending_here = 0
+Return max_so_far
+*/
+void max_sum(int a[],int size)
+{
+  int maxsum=INT_MIN;
+  int currsum=0;
+  int i=0;
+  while(i<size)
+  {
+    currsum+=a[i];
+    if(maxsum<currsum)
+    {
+      maxsum=currsum;
+    }
+    if(currsum<0)
+    {
+      currsum=0;
+    }
+    i++;
+  }
+  cout <<" \n MAXIMUM SUM :" << maxsum <<endl;
 }
 int main()
 {
-   int array[]={-4,3,1,-2,6,2,-4,-1,-7};
-   gen_sub(array,9);
+   int array[]={5,4,-1,7,8};
+   max_sum(array,5);
    return 0;
 }
