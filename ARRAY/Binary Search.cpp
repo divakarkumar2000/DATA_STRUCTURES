@@ -1,3 +1,5 @@
+// tc = O(log(n))
+
 #include <bits/stdc++.h>
 using namespace std;
 int binarysearch(int arr[], int n , int key)

@@ -1,6 +1,6 @@
 
 /* In bubble sort , we just have to take heaviest element to the bottom and lighter bubble up */
-/*The simple steps of achieving the insertion sort are listed as follows -
+/*The simple steps of achieving the bubble sort are listed as follows -
 
 Step 1 - If the element is the first element, assume that it is already sorted. Return 1.
 
