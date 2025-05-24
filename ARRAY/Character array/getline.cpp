@@ -4,7 +4,7 @@ using namespace std;
 void readline(char a[],int size, char stop='\n')
 {
  int i=0;
- int ch=cin.get();
+ char ch=cin.get();
  while(ch!=stop)
  {
   a[i]=ch;
