@@ -25,13 +25,14 @@ int binarySearch(int a[],int s,int e,int k)
             s = m +1;
         }
     }
+    return -1;
 }
   
 int smallestElement(int a[],int n)
 {
     int s=0;
     int e=n-1;
-    while(s<e)
+    while(s<=e)
     {
         if(a[s]<=a[e])
         {
