@@ -146,8 +146,103 @@ bool RecursiveSearchInLL(node *head,int key)
         return RecursiveSearchInLL(head->next,key);
     }
 }
+
+node * take_input()
+{
+    int d;
+    node * head = NULL;
+    cin>>d;
+    while(d!=-1)
+    {
+       insertATHead(head,d);
+       cin>>d;
+    }
+    return head;
+}
+
+/*Input by file*/
+node * take_input_by_file()
+{
+    int d;
+    node * head = NULL;
+    while(cin>>d)
+    {
+       insertATHead(head,d);
+    }
+    return head;
+}
+/*operator overloading*/
+
+ostream& operator<<(ostream &os, node *head)
+{
+    printLL(head);
+    return os;
+}
+
+istream& operator>>(istream &in , node *&head)
+{
+    head = take_input();
+    return in;
+}
+
+/*Reverse a Linked list*/
+node * reverseLL(node *head)
+{
+    if(head->next==NULL)
+    {
+       return head;
+    }
+    node *temp1=NULL;
+    node *temp2=NULL;
+    while(head!=NULL)
+    {
+        temp1=head;
+        head=head->next;
+        temp1->next=temp2;
+        temp2=temp1;
+    }
+    return temp1;
+}
+
+node *recursiveReverseLL(node *head)
+{
+    if(head==NULL or head->next==NULL)
+    {
+        return head;
+    }
+    /*give us head of recursive list*/
+    node *rhead = recursiveReverseLL(head->next);
+    node *temp = head->next;
+    /*
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    */
+    temp->next=head;
+    head->next=NULL;
+    return rhead;
+}
+
+node * middlePointOfLL(node *head)
+{
+    if(head==NULL or head->next==NULL)
+    {
+        return head;
+    }
+    node *slow = head;
+    node *fast = head->next;
+
+    while(fast!=NULL || fast->next!=NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
 int main()
 {
+    /*
     node * head = NULL;
     insertATHead(head,4);
     insertATHead(head,2);
@@ -168,6 +263,28 @@ int main()
     printLL(head);
     cout<<searchInLL(head,5)<<endl;;
     cout<<RecursiveSearchInLL(head,7)<<endl;
+    */
+
+    //node *head1 = take_input();
+    //node *head2 = take_input();
+    //node *head1 = NULL;
+    //node *head2 = NULL;
+    //cin>>head1>>head2;
+    //cout<<head1<<head2;
+    //printLL(head);
+
+    node *head = take_input();
+    printLL(head);
+
+    //head = reverseLL(head);
+    //printLL(head);
+
+    //head = recursiveReverseLL(head);
+    //printLL(head);
+
+    node *mid = middlePointOfLL(head);
+    cout<<mid->data<<endl;
+
 
     return 0;
 }
