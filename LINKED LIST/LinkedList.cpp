@@ -233,12 +233,112 @@ node * middlePointOfLL(node *head)
     node *slow = head;
     node *fast = head->next;
 
-    while(fast!=NULL || fast->next!=NULL)
+    while(fast!=NULL && fast->next!=NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
     }
     return slow;
+}
+
+node * kthNodefromTheEndLL(node *head,int k)
+{
+    /*k is less than the length of the linked list*/
+    if(head==NULL){
+        return head;
+    }
+    node * slow = head;
+    node * fast = head;
+    while(k--)
+    {
+        fast=fast->next;
+    }
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    if(fast==NULL)
+    {
+        return slow;
+    }
+    return slow->next;
+}
+node *MergeTwoSortedLL(node *list1, node *list2)
+{
+    if(list1==NULL)
+    {
+        return list2;
+    }
+    if(list2==NULL)
+    {
+        return list1;
+    }
+
+    node * dummy = new node(-1);
+    node * temp = dummy;
+    while(list1!=NULL && list2!=NULL)
+    {
+        if(list1->data<=list2->data)
+        {
+            temp->next = list1;
+            temp = list1;
+            list1 = list1->next;
+        }
+        else{
+            temp->next = list2;
+            temp = list2;
+            list2 = list2->next;
+        }
+    }
+    if(list1)
+    {
+        temp->next = list1;
+    }
+    if(list2)
+    {
+        temp->next = list2;
+    }
+    return dummy->next;
+}
+node * RecursiveMergeTwoSortedLL(node *list1, node *list2)
+{
+    if(list1==NULL)
+    {
+        return list2;
+    }
+    if(list2==NULL)
+    {
+        return list1;
+    }
+    node * temp = NULL;
+    if(list1->data<=list2->data)
+    {
+        temp = list1;
+        temp->next = RecursiveMergeTwoSortedLL(list1->next,list2);
+    }
+    else{
+        temp = list2;
+        temp->next = RecursiveMergeTwoSortedLL(list1,list2->next);
+    }
+    return temp;
+}
+
+node *mergeSort(node *head)
+{
+    if(head == NULL || head->next==NULL)
+    {
+        return head;
+    }
+    node *mid = middlePointOfLL(head);
+    node *l1 = head;
+    node *l2 = mid->next;
+    mid->next = NULL;
+    node *h1 = mergeSort(l1);
+    node *h2 = mergeSort(l2);
+
+    node * temp = MergeTwoSortedLL(h1,h2);
+    return temp;
 }
 int main()
 {
@@ -273,8 +373,8 @@ int main()
     //cout<<head1<<head2;
     //printLL(head);
 
-    node *head = take_input();
-    printLL(head);
+    //node *head = take_input();
+    //printLL(head);
 
     //head = reverseLL(head);
     //printLL(head);
@@ -282,9 +382,19 @@ int main()
     //head = recursiveReverseLL(head);
     //printLL(head);
 
-    node *mid = middlePointOfLL(head);
-    cout<<mid->data<<endl;
+    //node *mid = middlePointOfLL(head);
+    //node * kthEle = kthNodefromTheEndLL(head,3);
+    //cout<<kthEle->data<<endl;
+    node *head1 = take_input();
+   // node *head2 = take_input();
+    printLL(head1);
+   // printLL(head2);
 
+    //node * head = MergeTwoSortedLL(head1,head2);
+    //printLL(head);
+    //node * headR = RecursiveMergeTwoSortedLL(head1,head2);
+    node * headR = mergeSort(head1);
+    printLL(headR);
 
     return 0;
 }
